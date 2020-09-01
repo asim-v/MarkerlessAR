@@ -1,0 +1,96 @@
+<!doctype html>
+
+<!-- Mirrored from demo.zeanex.com/markerlessWebAR/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Aug 2020 18:29:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="admin/images/fav.png" type="image/ico" sizes="16x16">
+    <title>Alfonso Marina</title>
+    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ar-style.css">
+    <script src="../../ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Import the component --><script type="module"
+  src="../../unpkg.com/%40google/model-viewer%400.10.0/dist/model-viewer.js">
+</script>
+<script nomodule
+  src="../../unpkg.com/%40google/model-viewer%400.10.0/dist/model-viewer-legacy.js">
+</script>
+    <script src="../../code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 grid-modal">
+            <center>
+                <model-viewer src="admin/androidModels/plant.glb" class="home-modal-view" ar autoplay ar-scale="auto" auto-rotate camera-controls alt="Marker Less Web AR" ios-src="admin/iosModels/plant.usdz" magic-leap unstable-webxr></model-viewer>
+            </center>
+        </div>
+
+
+
+<script type="module">
+
+import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-app.js"
+import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-auth.js"
+import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-database.js"    
+
+function initFirebase() {
+    var firebaseConfig = {
+        apiKey: "AIzaSyBoSrTAuGjgxEhNiuYd_MRiXfObLx2ZXdI",
+        authDomain: "hackify-69b56.firebaseapp.com",
+        databaseURL: "https://hackify-69b56.firebaseio.com",
+        projectId: "hackify-69b56",
+        storageBucket: "gs://hackify-69b56.appspot.com",
+        messagingSenderId: "742410086079",
+        appId: "1:742410086079:web:f2ab19fc5f996b1c38480a",
+        measurementId: "G-S4XYSY8W9G"
+      };
+    // Initialize Firebase
+    console.log(firebase);
+    firebase.initializeApp(firebaseConfig);
+    var storage = firebase.storage();
+
+    
+    var url = window.location.href;
+    var name = url.split('?');
+    var incoming_id = name[name.length-1];
+
+    
+
+    storage.ref('muebles/'+incoming_id).getDownloadURL().then(function(url) {
+      // `url` is the download URL for 'images/stars.jpg'
+
+      // This can be downloaded directly:
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function(event) {
+        var blob = xhr.response;
+      };
+      xhr.open('GET', url);
+      xhr.send();
+
+      // Or inserted into an <img> element:
+      // var img = document.getElementById('myimg');
+      // img.src = url;
+    }).catch(function(error) {
+      // Handle any errors
+    });
+    
+
+
+    // var storage = firebase.storage();
+    // var pathReference = storage.ref('images/stars.jpg');
+}
+
+initFirebase()
+
+</script>
+                
+</div>
+</body>
+
+<!-- Mirrored from demo.zeanex.com/markerlessWebAR/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Aug 2020 18:31:23 GMT -->
+</html>

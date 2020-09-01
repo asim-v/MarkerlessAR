@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<!-- Mirrored from www.furnis.online/logout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Aug 2020 05:31:36 GMT -->
+<head>
+        <meta charset="utf-8">
+        <title>Log out</title>
+    </head>
+    <body>
+        <div style="padding: 133 0 0;">
+            <h4>
+                Saliendo por favor espera...
+            </h4>
+        </div>
+        <script type="module">
+            import "firebase/firebase-app.js"
+            import "firebase/firebase-auth.js"
+
+            (function(){
+                initFirebase();
+                firebase.auth().onAuthStateChanged((e)=>{
+                    window.location = "index-2.html";
+                });
+                firebase.auth().signOut();
+                
+                window.setTimeout(function(){window.location="index-2.html";},1000);
+                
+                function initFirebase() {
+                    var firebaseConfig = {
+                        apiKey: "AIzaSyBoSrTAuGjgxEhNiuYd_MRiXfObLx2ZXdI",
+                        authDomain: "hackify-69b56.firebaseapp.com",
+                        databaseURL: "https://hackify-69b56.firebaseio.com",
+                        projectId: "hackify-69b56",
+                        storageBucket: "hackify-69b56.appspot.com",
+                        messagingSenderId: "742410086079",
+                        appId: "1:742410086079:web:f2ab19fc5f996b1c38480a",
+                        measurementId: "G-S4XYSY8W9G"
+                    };
+                    firebase.initializeApp(firebaseConfig);
+                }
+            }())
+        </script>
+    </body>
+
+<!-- Mirrored from www.furnis.online/logout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Aug 2020 05:31:37 GMT -->
+</html>

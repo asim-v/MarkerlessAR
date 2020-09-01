@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from www.furnis.online/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Aug 2020 05:31:37 GMT -->
+<head>
+		<title>Registro</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link href="css/theme.css" rel="stylesheet">
+            
+	</head>
+	<body>
+		<diV style="text-align: center; top: 0px;  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .1);" class="nabvar theme-nav">
+            <div style="display: inline-block; position:fixed; box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .1);">
+                <ul>
+                    <ui class="navs"><a href="index-2.html">Inicio</a></ui>
+                    <ui class="navs"><a href="about.html">Acerca</a></ui>
+                    <ui class="navs"><a href="contact.html">Contacto</a></ui>
+                    <ui class="navs"><a href="logout.html">Salir</a></ui>
+                    <ui class="navs"><a href="login.html">Inicia sesión</a></ui>
+                    <ui class="navs"><a href="signup.html">Registro</a></ui>
+                    <ui class="navs"><a href="https://admin.furnis.online/">Acceso admin</a></ui>
+                </ul>
+			</div>
+        </diV>
+        <div style="position:fixed; right: 0px; left: 0px; top:5vh; text-align: center;">
+            <div class="theme-controls">
+                <h4>
+                    Registro
+                </h4>
+                <div>
+                    <p><input class="block" placeholder="Nombre" id="tName"/></p>
+                    <p><input class="block" placeholder="Correo" id="tMail"></p>
+                    <p><input class="block" placeholder="Contreseña" id="tPassword"></p>
+                    <p><input class="block" placeholder="Ciudad" id="tCity"></p>
+                    <p><input class="block" placeholder="dd/mm/aa" id="tDate"></p>
+                    <button id="bSend" class="theme-button">Enviar</button>
+                </div>
+            </div>    
+        </div>
+        <div class="footer" style="left: 0px; right: 0px;">
+            <p style="text-align: center;">2020 Hackify - All rigths reserved</p>
+        </div>
+        <script type="module">
+            import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-app.js"
+            import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-auth.js"
+            import "/demo.zeanex.com/markerlessWebAR/firebase/firebase-database.js"
+
+            (function(){
+                initFirebase();
+                firebase.auth().onAuthStateChanged((e)=>{
+                    if(e){
+                        let data ={
+                            "uid":e.uid,
+                            "name": document.getElementById("tName").value,
+                            "pass": document.getElementById("tPassword").value,
+                            "city":document.getElementById("tCity").value,
+                            "date": document.getElementById("tDate").value,
+                            "mail": document.getElementById("tMail").value
+                        }
+                        firebase.database().ref("users-db").child(e.uid).update(data).then((e) => {
+                            window.location="index-2.html";
+                        });
+                    }
+                });
+
+                document.getElementById("bSend").addEventListener("click",(e) => {
+                    firebase.auth().onAuthStateChanged(function(){});
+                    let email = document.getElementById("tMail").value;
+                    let password = document.getElementById("tPassword").value;
+
+
+                    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                        console.log(e)
+                        alert("Datos incorrectos")
+                        // ...
+                    });
+                });
+
+                function initFirebase() {
+                    var firebaseConfig = {
+                        apiKey: "AIzaSyBoSrTAuGjgxEhNiuYd_MRiXfObLx2ZXdI",
+                        authDomain: "hackify-69b56.firebaseapp.com",
+                        databaseURL: "https://hackify-69b56.firebaseio.com",
+                        projectId: "hackify-69b56",
+                        storageBucket: "hackify-69b56.appspot.com",
+                        messagingSenderId: "742410086079",
+                        appId: "1:742410086079:web:f2ab19fc5f996b1c38480a",
+                        measurementId: "G-S4XYSY8W9G"
+                    };
+                    firebase.initializeApp(firebaseConfig);
+                }
+            }())
+        </script>
+	</body>
+
+<!-- Mirrored from www.furnis.online/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Aug 2020 05:31:37 GMT -->
+</html>
